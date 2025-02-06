@@ -7,15 +7,7 @@ class Product:
     quantity: int
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
-        """
-        Инициализация экземпляра класса Product.
-
-        Args:
-            name (str): Название продукта.
-            description (str): Описание продукта.
-            price (float): Цена продукта (может включать копейки).
-            quantity (int): Количество продукта в наличии.
-        """
+        """Инициализация экземпляра класса Product."""
         self.name = name
         self.description = description
         self.price = price
