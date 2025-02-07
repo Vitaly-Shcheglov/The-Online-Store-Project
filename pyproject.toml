@@ -1,17 +1,19 @@
 [tool.poetry]
-name = "the-online-store-project"
+name = "an-application-for-analyzing-banking-transactions"
 version = "0.1.0"
 description = ""
-authors = ["Vitaly Shcheglov <cgfhnfr4@gmail.com>"]
+authors = ["Vitaly Shcheglov < cgfhnfr4@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
 
+
 [tool.poetry.group.lint.dependencies]
 flake8 = "^7.1.1"
-mypy = "^1.15.0"
-black = "^25.1.0"
+mypy = "^1.14.1"
+black = "^24.10.0"
+isort = "^5.13.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -21,11 +23,11 @@ build-backend = "poetry.core.masonry.api"
 disallow_untyped_defs = true
 no_implicit_optional = true
 warn_return_any = true
-exclude = "venv"
+exclude = 'venv'
 
 [tool.black]
 # Максимальная длина строки
-line-length = 119
+line-length = 79
 # Файлы, которые не нужно форматировать
 exclude = '''
 (
@@ -42,3 +44,10 @@ exclude = '''
                      # в корне проекта
 )
 '''
+
+[tool.isort]
+# максимальная длина строки
+line_length = 79
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]  # Убедитесь, что указан правильный путь

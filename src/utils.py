@@ -1,7 +1,8 @@
 import json
 import os
-from src.product import Product
+
 from src.category import Category
+from src.product import Product
 
 
 def read_json(path: str) -> dict:
@@ -18,7 +19,10 @@ def create_objects_from_json(data: list):
 
     for category_data in data:
 
-        category = Category(name=category_data["name"], description=category_data["description"])
+        category = Category(
+            name=category_data["name"],
+            description=category_data["description"],
+        )
 
         for product_data in category_data.get("products", []):
             product = Product(**product_data)
@@ -36,4 +40,6 @@ if __name__ == "__main__":
     for category in categories_data:
         print(f"Категория: {category.name}, Описание: {category.description}")
         for product in category.products:
-            print(f"  Продукт: {product.name}, Цена: {product.price}, Количество: {product.quantity}")
+            print(
+                f"  Продукт: {product.name}, Цена: {product.price}, Количество: {product.quantity}"
+            )
