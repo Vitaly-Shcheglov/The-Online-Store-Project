@@ -7,9 +7,7 @@ from src.product import Product
 @pytest.fixture
 def category_example():
     """Функция создает пример категории для тестирования."""
-    return Category(
-        name="Электроника", description="Различные электронные устройства"
-    )
+    return Category(name="Электроника", description="Различные электронные устройства")
 
 
 @pytest.fixture

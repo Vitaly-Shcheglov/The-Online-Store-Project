@@ -6,9 +6,7 @@ class Product:
     price: float
     quantity: int
 
-    def __init__(
-        self, name: str, description: str, price: float, quantity: int
-    ):
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         """Инициализация экземпляра класса Product."""
         self.name = name
         self.description = description

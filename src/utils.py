@@ -40,6 +40,4 @@ if __name__ == "__main__":
     for category in categories_data:
         print(f"Категория: {category.name}, Описание: {category.description}")
         for product in category.products:
-            print(
-                f"  Продукт: {product.name}, Цена: {product.price}, Количество: {product.quantity}"
-            )
+            print(f"  Продукт: {product.name}, Цена: {product.price}, Количество: {product.quantity}")
