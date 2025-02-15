@@ -11,15 +11,26 @@ class Category:
         """Инициализация экземпляра класса Category."""
         self.name = name
         self.description = description
-        self.products = products if products is not None else []
+        self.__products = products if products is not None else []
 
         Category.category_count += 1
 
         if products:
             Category.product_count += len(products)
-            self.products.extend(products)
+            self.__products.extend(products)
 
     def add_product(self, product: Product):
         """Добавляет продукт в категорию и обновляет общий счетчик продуктов."""
-        self.products.append(product)
+        self.__products.append(product)
         Category.product_count += 1
+
+    @property
+    def products(self):
+        """Геттер для получения списка продуктов в категории."""
+        return self.__products
+
+    def formatted_products(self):
+        """Метод для получения отформатированного списка продуктов."""
+        return "\n".join(
+            [f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт." for product in self.__products]
+        )
