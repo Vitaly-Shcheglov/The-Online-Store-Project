@@ -68,3 +68,17 @@ def test_product_new_product_existing_no_update(product_example):
     updated_product = Product.new_product(product_data, existing_products)
     assert updated_product.quantity == 80
     assert updated_product.price == 699.99
+
+
+def test_product_str(product_example):
+    """Функция тестирует строковое представление продукта."""
+    expected_str = "Смартфон, 699.99 руб. Остаток: 50 шт."
+    assert str(product_example) == expected_str
+
+
+def test_product_addition(product_example):
+    """Функция тестирует сложение двух продуктов."""
+    product2 = Product("Ноутбук", "Мощный ноутбук", 999.99, 30)
+    total_value = product_example + product2
+    expected_value = (product_example.price * product_example.quantity) + (product2.price * product2.quantity)
+    assert total_value == expected_value

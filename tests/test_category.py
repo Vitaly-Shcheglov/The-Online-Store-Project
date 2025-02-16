@@ -20,3 +20,9 @@ def test_category_count():
     initial_count = Category.category_count
     Category("Мебель", "Различная мебель")
     assert Category.category_count == initial_count + 1
+
+
+def test_category_str(category_example):
+    """Функция тестирует строковое представление категории."""
+    expected_str = "Электроника, количество продуктов: 0 шт."
+    assert str(category_example) == expected_str

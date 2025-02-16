@@ -45,3 +45,14 @@ class Product:
                 return
 
         self.__price = new_price
+
+    def __str__(self):
+        """Строковое представление продукта."""
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        """Магический метод сложения для подсчета полной стоимости."""
+        if isinstance(other, Product):
+            total_value = (self.price * self.quantity) + (other.price * other.quantity)
+            return total_value
+        return NotImplemented
