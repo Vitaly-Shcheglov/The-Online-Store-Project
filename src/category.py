@@ -21,6 +21,15 @@ class Category:
 
     def add_product(self, product: Product):
         """Добавляет продукт в категорию и обновляет общий счетчик продуктов."""
+        if not isinstance(product, Product):
+            raise TypeError("Можно добавлять только объекты класса Product и его наследников.")
+
+        if self.__products and not isinstance(self.__products[0], type(product)):
+            raise TypeError(
+                f"Нельзя добавлять продукты разных типов: {type(self.__products[0]).__name__}"
+                f" и {type(product).__name__}"
+            )
+
         self.__products.append(product)
         Category.product_count += 1
 
