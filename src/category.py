@@ -24,14 +24,19 @@ class Category:
         if not isinstance(product, Product):
             raise TypeError("Можно добавлять только объекты класса Product и его наследников.")
 
-        if self.__products and not isinstance(self.__products[0], type(product)):
-            raise TypeError(
-                f"Нельзя добавлять продукты разных типов: {type(self.__products[0]).__name__}"
-                f" и {type(product).__name__}"
-            )
-
         self.__products.append(product)
         Category.product_count += 1
+
+    def __add__(self, other):
+        """Позволяет сложить категорию с продуктом, но только если продукт относится к актуальной категории."""
+        if isinstance(other, Product):
+            if self.__products and not isinstance(other, self.__products[0].__class__):
+                raise TypeError(
+                    f"Нельзя добавлять продукт разного типа: {other.__class__.__name__} "
+                    f"к категории, содержащей {self.__products[0].__class__.__name__}"
+                )
+            self.add_product(other)
+            return self
 
     @property
     def products(self):
