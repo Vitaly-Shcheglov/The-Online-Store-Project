@@ -34,9 +34,3 @@ def test_add_invalid_product(category_example):
     """Функция тестирует попытку добавления некорректного объекта в категорию."""
     with pytest.raises(TypeError):
         category_example.add_product("Некорректный продукт")
-
-
-def test_add_product_with_different_type(category_example, lawn_grass_example):
-    """Функция тестирует попытку добавления продукта другого типа в категорию."""
-    category_example.add_product(lawn_grass_example)
-    assert len(category_example.products) == 1
