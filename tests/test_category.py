@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 
 
@@ -26,3 +28,9 @@ def test_category_str(category_example):
     """Функция тестирует строковое представление категории."""
     expected_str = "Электроника, количество продуктов: 0 шт."
     assert str(category_example) == expected_str
+
+
+def test_add_invalid_product(category_example):
+    """Функция тестирует попытку добавления некорректного объекта в категорию."""
+    with pytest.raises(TypeError):
+        category_example.add_product("Некорректный продукт")

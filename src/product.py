@@ -53,6 +53,10 @@ class Product:
     def __add__(self, other):
         """Магический метод сложения для подсчета полной стоимости."""
         if isinstance(other, Product):
+            if type(self) != type(other):
+                raise TypeError(
+                    f"Нельзя складывать продукты разных типов: {type(self).__name__} и {type(other).__name__}"
+                )
             total_value = (self.price * self.quantity) + (other.price * other.quantity)
             return total_value
         return NotImplemented

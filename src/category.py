@@ -21,8 +21,12 @@ class Category:
 
     def add_product(self, product: Product):
         """Добавляет продукт в категорию и обновляет общий счетчик продуктов."""
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+
+        else:
+            raise TypeError
 
     @property
     def products(self):
