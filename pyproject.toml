@@ -52,6 +52,9 @@ exclude = '''
 )
 '''
 
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::Warning"]
+
 [tool.isort]
 # максимальная длина строки
 line_length = 119
