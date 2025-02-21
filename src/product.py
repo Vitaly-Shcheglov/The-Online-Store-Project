@@ -1,4 +1,8 @@
-class Product:
+from src.baseproduct import BaseProduct
+from src.logging_mixin import LoggingMixin
+
+
+class Product(LoggingMixin, BaseProduct):
     """Класс для представления продукта."""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -52,11 +56,7 @@ class Product:
 
     def __add__(self, other):
         """Магический метод сложения для подсчета полной стоимости."""
-        if isinstance(other, Product):
-            if type(self) != type(other):
-                raise TypeError(
-                    f"Нельзя складывать продукты разных типов: {type(self).__name__} и {type(other).__name__}"
-                )
-            total_value = (self.price * self.quantity) + (other.price * other.quantity)
-            return total_value
-        return NotImplemented
+        if type(self) != type(other):
+            raise TypeError(f"Нельзя складывать продукты разных типов: {type(self).__name__} и {type(other).__name__}")
+        total_value = (self.price * self.quantity) + (other.price * other.quantity)
+        return total_value
