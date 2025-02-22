@@ -1,3 +1,5 @@
+import pytest
+
 from src.product import Product
 
 
@@ -82,3 +84,9 @@ def test_product_addition(product_example):
     total_value = product_example + product2
     expected_value = (product_example.price * product_example.quantity) + (product2.price * product2.quantity)
     assert total_value == expected_value
+
+
+def test_product_initialization_zero_quantity():
+    """Функция тестирует инициализацию объекта Product с нулевым количеством."""
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен."):
+        Product("Смартфон", "Современный смартфон", 699.99, 0)
