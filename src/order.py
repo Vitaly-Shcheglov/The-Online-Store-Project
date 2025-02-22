@@ -1,4 +1,5 @@
 from src.base_order_category import BaseOrderCategory
+from src.exceptions import ZeroQuantityError
 from src.product import Product
 
 
@@ -7,9 +8,22 @@ class Order(BaseOrderCategory):
 
     def __init__(self, product: Product, quantity: int):
         super().__init__(name=product.name, description=product.description)
-        self.product = product
-        self.quantity = quantity
-        self.total_cost = self.calculate_total_cost()
+
+        try:
+            self.product = product
+            self.quantity = quantity
+
+            if self.quantity == 0:
+                raise ZeroQuantityError()
+
+            self.total_cost = self.calculate_total_cost()
+            print(f"Товар '{self.product.name}' успешно добавлен в заказ.")
+
+        except ZeroQuantityError as e:
+            print(e)
+
+        finally:
+            print("Обработка добавления товара завершена.")
 
     def calculate_total_cost(self):
         """Вычисляет итоговую стоимость заказа."""

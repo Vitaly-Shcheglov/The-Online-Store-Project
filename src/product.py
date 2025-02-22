@@ -1,4 +1,5 @@
 from src.baseproduct import BaseProduct
+from src.exceptions import ZeroQuantityError
 from src.logging_mixin import LoggingMixin
 
 
@@ -9,6 +10,8 @@ class Product(LoggingMixin, BaseProduct):
         """Инициализация экземпляра класса Product."""
         if quantity <= 0:
             raise ValueError("Товар с нулевым количеством не может быть добавлен.")
+        elif quantity == 0:
+            raise ZeroQuantityError()
 
         self.name = name
         self.description = description
